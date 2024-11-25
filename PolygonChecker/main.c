@@ -1,35 +1,35 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
 #include <math.h>
 #include "rect.h"
 
+
 // Function prototypes for both operations
 void printWelcome();
-int printShapeMenu();
+char* printShapeMenu(char* input);
 int* getTriangleSides(int* triangleSides);
 int isValidTriangle(int a, int b, int c);
 void checkTriangle();
 
 int main() {
-    bool continueProgram = true;
 
-    while (continueProgram) {
+    while (true) {
         printWelcome();
+        char shapeChoice[64] = {0};
+        printShapeMenu(shapeChoice);
 
-        int shapeChoice = printShapeMenu();
-
-        switch (shapeChoice) {
-        case 1:
+        switch (shapeChoice[0]) {
+        case '1':
             checkTriangle();  // Check if the sides form a valid triangle
             break;
 
-        case 2:
+        case '2':
             checkRectangle();  // Check if the points form a rectangle
             break;
 
-        case 0:
-            continueProgram = false;  // Exit the program
-            break;
+        case '0': // exit the program when 0 is input
+            exit(0);
 
         default:
             printf_s("Invalid value entered.\n");
@@ -49,16 +49,15 @@ void printWelcome() {
 }
 
 // Function to print the menu for shape selection
-int printShapeMenu() {
+char* printShapeMenu(char* input) {
     printf_s("1. Triangle\n");
     printf_s("2. Rectangle\n");
     printf_s("0. Exit\n");
 
-    int shapeChoice;
     printf_s("Enter number: ");
-    scanf_s("%d", &shapeChoice);
+    scanf_s("%64s", input, 64);
 
-    return shapeChoice;
+    return input;
 }
 
 // Function to get the three sides of a triangle
