@@ -79,7 +79,7 @@ int isValidTriangle(int a, int b, int c) {
 
 // Function to check if the sides form a valid triangle
 void checkTriangle() {
-    int triangleSides[3] = { 0, 0, 0 };
+    int triangleSides[3] = { 0, 0, 0 }; // note for Harsh: just putting { 0 } will work
     int* triangleSidesPtr = getTriangleSides(triangleSides);
 
     if (isValidTriangle(triangleSidesPtr[0], triangleSidesPtr[1], triangleSidesPtr[2])) {
@@ -91,6 +91,8 @@ void checkTriangle() {
             triangleSidesPtr[1] == triangleSidesPtr[2]
         ) {
             printf_s("This is an Equilateral triangle.\n");
+            // if it an equilateral all angles are 60
+            printf("angle a: 60\nangle b: 60\nangle c: 60\n");
         }
         else if (
             triangleSidesPtr[0] == triangleSidesPtr[1] || 
@@ -98,9 +100,11 @@ void checkTriangle() {
             triangleSidesPtr[2] == triangleSidesPtr[0]
         ) {
             printf_s("This is an Isosceles triangle.\n");
+            anglePrint(triangleSides);
         }
         else {
             printf_s("This is a Scalene triangle.\n");
+            anglePrint(triangleSides);
         }
     }
     else {
