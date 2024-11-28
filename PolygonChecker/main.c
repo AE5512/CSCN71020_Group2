@@ -9,7 +9,6 @@
 void printWelcome();
 char* printShapeMenu(char* input);
 int* getTriangleSides(int* triangleSides);
-int isValidTriangle(int a, int b, int c);
 void checkTriangle();
 
 int main() {
@@ -81,33 +80,6 @@ int isValidTriangle(int a, int b, int c) {
 void checkTriangle() {
     int triangleSides[3] = { 0, 0, 0 }; // note for Harsh: just putting { 0 } will work
     int* triangleSidesPtr = getTriangleSides(triangleSides);
+    triangleType(triangleSidesPtr);
 
-    if (isValidTriangle(triangleSidesPtr[0], triangleSidesPtr[1], triangleSidesPtr[2])) {
-        printf_s("The sides %d, %d, and %d form a valid triangle.\n", triangleSidesPtr[0], triangleSidesPtr[1], triangleSidesPtr[2]);
-
-        // Now analyzing the type of triangle (simplified here as an example)
-        if (
-            triangleSidesPtr[0] == triangleSidesPtr[1] && 
-            triangleSidesPtr[1] == triangleSidesPtr[2]
-        ) {
-            printf_s("This is an Equilateral triangle.\n");
-            // if it an equilateral all angles are 60
-            printf("angle a: 60\nangle b: 60\nangle c: 60\n");
-        }
-        else if (
-            triangleSidesPtr[0] == triangleSidesPtr[1] || 
-            triangleSidesPtr[1] == triangleSidesPtr[2] || 
-            triangleSidesPtr[2] == triangleSidesPtr[0]
-        ) {
-            printf_s("This is an Isosceles triangle.\n");
-            anglePrint(triangleSides);
-        }
-        else {
-            printf_s("This is a Scalene triangle.\n");
-            anglePrint(triangleSides);
-        }
-    }
-    else {
-        printf_s("The sides %d, %d, and %d do not form a valid triangle.\n", triangleSidesPtr[0], triangleSidesPtr[1], triangleSidesPtr[2]);
-    }
 }
